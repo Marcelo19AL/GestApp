@@ -11,6 +11,30 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'gest-app',
+    loadChildren: () => import('./gest-app/gest-app.module').then( m => m.GestAppPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+    path: 'seguimiento',
+    loadChildren: () => import('./seguimiento/seguimiento.module').then( m => m.SeguimientoPageModule)
+  },
+  {
+    path: 'recordatorios',
+    loadChildren: () => import('./recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
+  },
+  {
+    path: 'consejos',
+    loadChildren: () => import('./consejos/consejos.module').then( m => m.ConsejosPageModule)
+  },
+  {
+    path: 'comunidad',
+    loadChildren: () => import('./comunidad/comunidad.module').then( m => m.ComunidadPageModule)
+  },
 ];
 
 @NgModule({
@@ -20,3 +44,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
