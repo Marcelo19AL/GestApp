@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Editar Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="guardarCambios()">Guardar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <!-- Subir Foto de Perfil -->
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="assets/images/perfil-placeholder.jpg" alt="Foto de Perfil">
+      </ion-avatar>
+      <ion-button (click)="cambiarFoto()" color="secondary">Cambiar Foto</ion-button>
+    </ion-item>
+  </ion-card>
+
+  <!-- Formulario de Edición -->
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="perfil.nombre" placeholder="Nombre de Usuario"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Correo</ion-label>
+      <ion-input [(ngModel)]="perfil.correo" type="email" placeholder="correo&#64;ejemplo.com"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Teléfono</ion-label>
+      <ion-input [(ngModel)]="perfil.telefono" type="tel" placeholder="+51 123 456 789"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Edad</ion-label>
+      <ion-input [(ngModel)]="perfil.edad" type="number" placeholder="30 años"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

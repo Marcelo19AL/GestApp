@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'comunidad',
     loadChildren: () => import('./comunidad/comunidad.module').then( m => m.ComunidadPageModule)
   },
+  {
+    path: 'editar-perfil',
+    loadChildren: () => import('./editar-perfil/editar-perfil.module').then( m => m.EditarPerfilPageModule)
+  },
 ];
 
 @NgModule({
