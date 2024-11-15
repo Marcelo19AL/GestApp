@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -12,19 +13,18 @@ export class EditarPerfilPage implements OnInit {
     nombre: '',
     correo: '',
     telefono: '',
-    edad: null
+    edad: null,
+    foto: ''  // Nueva propiedad para guardar la foto
   };
 
   constructor(private navCtrl: NavController, private storage: Storage) {}
 
   async ngOnInit() {
-    // Inicializa el almacenamiento y carga los datos del perfil
     await this.storage.create();
     this.cargarPerfil();
   }
 
   async cargarPerfil() {
-    // Cargar datos del perfil desde el almacenamiento
     const perfilGuardado = await this.storage.get('perfil');
     if (perfilGuardado) {
       this.perfil = perfilGuardado;
@@ -32,14 +32,24 @@ export class EditarPerfilPage implements OnInit {
   }
 
   async guardarCambios() {
-    // Guardar datos actualizados en el almacenamiento
     await this.storage.set('perfil', this.perfil);
     console.log('Perfil actualizado:', this.perfil);
-    this.navCtrl.navigateBack('/perfil'); // Navega de vuelta al perfil
+    this.navCtrl.navigateBack('/perfil');
   }
 
-  cambiarFoto() {
-    // Aquí se podría implementar una función para cambiar la foto
-    console.log('Cambiar foto de perfil');
+  async cambiarFoto() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Base64,  // Guardar en formato Base64
+        source: CameraSource.Prompt,          // Permitir al usuario elegir entre cámara o galería
+      });
+
+      this.perfil.foto = `data:image/jpeg;base64,${image.base64String}`;
+      console.log('Foto de perfil actualizada');
+    } catch (error) {
+      console.error('Error al cambiar la foto:', error);
+    }
   }
 }

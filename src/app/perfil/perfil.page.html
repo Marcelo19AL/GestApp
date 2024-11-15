@@ -9,11 +9,11 @@
   <ion-card>
     <ion-item lines="none">
       <ion-avatar slot="start">
-        <img src="assets/images/perfil-placeholder.jpg" alt="Foto de Perfil">
+        <img [src]="perfil.foto" alt="Foto de Perfil">
       </ion-avatar>
       <ion-label>
-        <h2>Nombre de Usuario</h2>
-        <p>Semanas de gestación: 20</p>
+        <h2>{{ perfil.nombre }}</h2>
+        <p>Semanas de gestación: {{ perfil.semanasGestacion }}</p>
       </ion-label>
     </ion-item>
     <ion-button expand="full" color="secondary" (click)="editarPerfil()">Editar Perfil</ion-button>
@@ -28,15 +28,15 @@
       <ion-list lines="none">
         <ion-item>
           <ion-label>Edad</ion-label>
-          <ion-note slot="end">30 años</ion-note>
+          <ion-note slot="end">{{ perfil.edad }} años</ion-note>
         </ion-item>
         <ion-item>
           <ion-label>Correo</ion-label>
-          <ion-note slot="end">correo&#64;gmail.com</ion-note>
+          <ion-note slot="end">{{ perfil.correo }}</ion-note>
         </ion-item>
         <ion-item>
           <ion-label>Teléfono</ion-label>
-          <ion-note slot="end">+51 123 456 789</ion-note>
+          <ion-note slot="end">{{ perfil.telefono }}</ion-note>
         </ion-item>
       </ion-list>
     </ion-card-content>
@@ -51,11 +51,11 @@
       <ion-list lines="none">
         <ion-item>
           <ion-label>Peso</ion-label>
-          <ion-note slot="end">65 kg</ion-note>
+          <ion-note slot="end">{{ perfil.peso }}</ion-note>
         </ion-item>
         <ion-item>
           <ion-label>Presión Arterial</ion-label>
-          <ion-note slot="end">120/80</ion-note>
+          <ion-note slot="end">{{ perfil.presion }}</ion-note>
         </ion-item>
       </ion-list>
     </ion-card-content>
@@ -70,11 +70,11 @@
       <ion-list lines="none">
         <ion-item>
           <ion-label>Hidratación</ion-label>
-          <ion-progress-bar value="0.6" color="secondary"></ion-progress-bar>
+          <ion-progress-bar [value]="perfil.hidratacion" color="secondary"></ion-progress-bar>
         </ion-item>
         <ion-item>
           <ion-label>Nutrición</ion-label>
-          <ion-progress-bar value="0.8" color="secondary"></ion-progress-bar>
+          <ion-progress-bar [value]="perfil.nutricion" color="secondary"></ion-progress-bar>
         </ion-item>
       </ion-list>
     </ion-card-content>
